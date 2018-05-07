@@ -1,5 +1,6 @@
 package com.example.nbb.coolweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.gesture.GestureLibraries;
 import android.graphics.Color;
@@ -23,12 +24,14 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.nbb.coolweather.gson.Forecast;
 import com.example.nbb.coolweather.gson.Weather;
+import com.example.nbb.coolweather.service.AutoUpdateService;
 import com.example.nbb.coolweather.util.HttpUtil;
 import com.example.nbb.coolweather.util.Utility;
 
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.net.Inet4Address;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -238,6 +241,9 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText(carWash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
+
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
 
     }
 
